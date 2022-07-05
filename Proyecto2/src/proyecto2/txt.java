@@ -7,38 +7,44 @@ import javax.swing.JOptionPane;
 
 
 public class txt {
-    public void start(){
-        String str = "Resumenes.txt";
-        String contenido = this.leer_archivo(str);
+    
+    public static void start(){
+        String str = "test\\resumenes.txt";
+        String contenido = leer_archivo(str);
         String[] contenido_array = contenido.split("archivos::\n");
         for (int i = 1; i < contenido_array.length; i++) {
-            this.crear_nodo(contenido_array[i]);
+            crear_nodo(contenido_array[i]);
         }
         
     }
     
-    public boolean crear_nodo(String contenido) {
+    public static boolean crear_nodo(String contenido) {
         boolean exists = false;
-        String nombre = contenido.split("Autores")[0];
+        String nombre = contenido.split("Autores\n")[0];
         String[] autores = contenido.split("Resumen\n")[0].split("Autores\n")[1].split("\n");
-        String resumen = contenido.split("Resumen\n")[1].split("Palabras Claves:")[0];
-        String[] palabras_claves = contenido.split("Palabras Claves: ")[1].split(".")[0].split(", ");
+        String resumen = contenido.split("Resumen\n")[1].split("Palabras claves:")[0];       
+        String[] palabras_claves = contenido.split("Palabras claves:")[1].split(".")[0].split(", ");
         boolean ok = ValidarArchivo(nombre, resumen, autores, palabras_claves);
         if(ok){
             Resumen nodo = new Resumen(nombre, resumen, autores, palabras_claves);
             Nodo<Resumen> nodo2 = new Nodo(nodo);
-            exists = Global.getTable().insertar(nodo2, nombre, contenido);}
+            HashTable table = Global.getTable();
+            if (table == null){
+                table = new HashTable();
+                Global.setTable(table);
+            }
+            exists = table.insertar(nodo2, nombre, contenido);
+        }
         else {
             JOptionPane.showMessageDialog(null, "Ese documento no es valido");
             exists = true;
         }
         return exists;
-        
     }
     
     
     
-    public boolean ValidarArchivo(String titulo, String resumen, String[] autores, String[] palabras_clave) {
+    public static boolean ValidarArchivo(String titulo, String resumen, String[] autores, String[] palabras_clave) {
         boolean ok = true;
         if("".equals(titulo)){
             ok = false;
@@ -55,7 +61,7 @@ public class txt {
         return ok;
     }
     
-    public String leer_archivo(String path) {
+    public static String leer_archivo(String path) {
         String contenido_txt = "";
         String line;
         File file = new File(path);
@@ -71,7 +77,7 @@ public class txt {
                     }
                 }
                 br.close();
-                JOptionPane.showMessageDialog(null, "Lectura exitosa");
+//                JOptionPane.showMessageDialog(null, "Lectura exitosa");
               
             }
         } catch (Exception e) {

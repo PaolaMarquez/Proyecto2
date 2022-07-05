@@ -19,7 +19,7 @@ public class HashTable {
     int tamaño;
     
     public HashTable(){
-        this.tamaño = 0;
+        this.tamaño = 1;
         this.array = new Nodo[tamaño];
     }
 

@@ -16,8 +16,8 @@ public class Global {
         return table;
     }
 
-    public void setTable(HashTable GlobalTable) {
-        this.table = GlobalTable;
+    public static void setTable(HashTable GlobalTable) {
+        table = GlobalTable;
     }
     
     

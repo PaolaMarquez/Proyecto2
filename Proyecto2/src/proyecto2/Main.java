@@ -15,11 +15,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        Menu menu = new Menu();
-//        menu.setVisible(true);
-
-        Ventana2 v1 = new Ventana2();
-        v1.setVisible(true);
+        txt.start();
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        
+//
+//        Ventana2 v1 = new Ventana2();
+//        v1.setVisible(true);
     }
     
 }
