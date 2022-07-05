@@ -13,6 +13,8 @@ public class Global {
     private static HashTable table;
     private static List listTitulo;
     private static List listSave;
+    private static List listAuthor;
+    
 
     public static HashTable getTable(){
         return table;
