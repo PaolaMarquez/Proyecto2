@@ -11,6 +11,8 @@ package proyecto2;
  */
 public class Global {
     private static HashTable table;
+    private static List listTitulo;
+    private static List listSave;
 
     public static HashTable getTable(){
         return table;
@@ -18,6 +20,22 @@ public class Global {
 
     public static void setTable(HashTable GlobalTable) {
         table = GlobalTable;
+    }
+
+    public static List getListTitulo() {
+        return listTitulo;
+    }
+
+    public static void setListTitulo(List listTitulo) {
+        Global.listTitulo = listTitulo;
+    }
+
+    public static List getListSave() {
+        return listSave;
+    }
+
+    public static void setListSave(List listSave) {
+        Global.listSave = listSave;
     }
     
     

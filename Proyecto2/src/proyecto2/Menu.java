@@ -109,10 +109,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         String contenido = openFile();
-        String[] array = contenido.split("archivos::\n");
-        for (int i = 1; i < array.length; i++) {
-            txt.crear_nodo(array[i]);
-        }
+        txt.crear_nodo(contenido);
+        
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
