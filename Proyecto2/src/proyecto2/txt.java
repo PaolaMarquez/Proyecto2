@@ -20,20 +20,30 @@ public class txt {
     
     public static boolean crear_nodo(String contenido) {
         boolean exists = false;
-        String nombre = contenido.split("Autores\n")[0];
+        String titulo = contenido.split("Autores\n")[0];
         String[] autores = contenido.split("Resumen\n")[0].split("Autores\n")[1].split("\n");
         String resumen = contenido.split("Resumen\n")[1].split("Palabras claves:")[0];       
         String[] palabras_claves = contenido.split("Palabras claves:")[1].split(".")[0].split(", ");
-        boolean ok = ValidarArchivo(nombre, resumen, autores, palabras_claves);
+        boolean ok = ValidarArchivo(titulo, resumen, autores, palabras_claves);
         if(ok){
-            Resumen nodo = new Resumen(nombre, resumen, autores, palabras_claves);
+            Resumen nodo = new Resumen(titulo, resumen, autores, palabras_claves);
             Nodo<Resumen> nodo2 = new Nodo(nodo);
             HashTable table = Global.getTable();
             if (table == null){
                 table = new HashTable();
                 Global.setTable(table);
             }
-            exists = table.insertar(nodo2, nombre, contenido);
+            exists = table.insertar(nodo2, titulo, contenido);
+            List<String> list = new List();
+            if (Global.getListSave() == null){
+                Global.setListSave(list);
+            }
+            if (Global.getListTitulo() == null){
+                Global.setListTitulo(list);
+            }
+            if (!exists){
+                Global.getListTitulo().insertOrdered(titulo);
+            }
         }
         else {
             JOptionPane.showMessageDialog(null, "Ese documento no es valido");
