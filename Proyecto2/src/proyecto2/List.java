@@ -181,7 +181,7 @@ public class List<T> {
         }
     }
     
-    public Nodo buscarNodo(int index){
+    public Nodo<T> buscarNodo(int index){
         int count = 0;
         Nodo pointer = getCabeza();
         while(count != index){

@@ -65,7 +65,7 @@ public class txt {
         boolean exists = false;
         String titulo = contenido.split("Autores")[0];
         String[] autores = contenido.split("Resumen\n")[0].split("Autores\n")[1].split("\n");
-        String resumen = contenido.split("Resumen\n")[1].split("Palabras claves:")[0];       
+        String resumen = contenido.split("Resumen\n")[1].split("Palabras claves:")[0];        
         String[] palabras_claves = contenido.split("Palabras claves:")[1].split(".")[0].split(", ");
         boolean ok = ValidarArchivo(titulo, resumen, autores, palabras_claves);
         if(ok){
@@ -97,7 +97,7 @@ public class txt {
                 }
             }
         }else {
-            JOptionPane.showMessageDialog(null, "Ese documento no es valido");
+            JOptionPane.showMessageDialog(null, "Ese documento no es válido");
             exists = true;
         }
         return exists;

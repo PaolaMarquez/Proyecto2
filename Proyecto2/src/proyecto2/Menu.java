@@ -35,7 +35,9 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -46,11 +48,18 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mendeley.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 280));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo-mendeley2.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 310));
 
         jMenu1.setText("    Archivo    ");
         jMenu1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -109,23 +118,12 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         String contenido = openFile();
-        //Esta repetida la funcion
-        txt.crear_nodo(contenido);
-        List<String> list = new List();
-        if (Global.getListSave() == null){
-            Global.setListSave(list);
-        }
-        if (Global.getListTitulo() == null){
-            Global.setListTitulo(list);
-        }
-        if(Global.getListAuthor() == null){
-            Global.setListAuthor(list);
-        }
-        boolean exists = txt.crear_nodo(contenido);
-        
-        if (!exists){
+        if (!contenido.equals("")){
+            boolean exists = txt.crear_nodo(contenido);
+            if (!exists){
             Global.getListSave().insertarFinal(contenido);
-        }        
+            }
+        }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -207,6 +205,8 @@ public class Menu extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
