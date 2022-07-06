@@ -7,10 +7,10 @@ package proyecto2;
  */
 
 public class Nodo <T> {
-    Nodo next;
-    T data;
-    String key;
-    String keyTitle;
+    private Nodo next;
+    private T data;
+    private String key;
+    private String keyTitle;
     
     public Nodo (T data){
         this.next = null;

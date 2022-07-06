@@ -9,12 +9,12 @@ package proyecto2;
  *
  * @author paola
  */
-public class Show extends javax.swing.JFrame {
+public class Show2 extends javax.swing.JFrame {
     public static Nodo<Resumen> resumen;
     /**
      * Creates new form Show
      */
-    public Show(Nodo<Resumen> resumen) {
+    public Show2(Nodo<Resumen> resumen) {
         initComponents();
         this.resumen = resumen;
         titulo.setText(resumen.getData().getTitulo());
@@ -23,12 +23,13 @@ public class Show extends javax.swing.JFrame {
             s += resumen.getData().getAutores()[i] + ", ";
         }
         autores.setText(s);
-        text.setText(resumen.getData().getResumen());
-        String p = "";
-        for (int i = 0; i < resumen.getData().getPalabras_clave().length; i++) {
-            p += resumen.getData().getPalabras_clave()[i] + ", ";
+        String str = "";
+        String[] palabras = resumen.getData().getPalabras_clave();
+        for(int i = 0; i<palabras.length;i++){
+            str += palabras[i]+": "+Integer.toString(Resumen.contarPalabra(resumen, palabras[i]))+"\n";
+//            str += palabras[i]+": "+Integer.toString(resumen.getData().getResumen().split((palabras[i])).length-1)+"\n";
         }
-        palabra.setText(p);
+        text.setText(str);
     }
 
     /**
@@ -44,12 +45,8 @@ public class Show extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         text = new javax.swing.JTextArea();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        palabra = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         autores = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -68,12 +65,8 @@ public class Show extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel3.setText("Resumen:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel4.setText("    claves:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 60, -1));
+        jLabel3.setText("Palabra clave: frecuencia");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
         text.setEditable(false);
         text.setColumns(20);
@@ -81,18 +74,7 @@ public class Show extends javax.swing.JFrame {
         text.setRows(5);
         jScrollPane2.setViewportView(text);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 490, 200));
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel5.setText("Palabras");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 60, -1));
-
-        palabra.setEditable(false);
-        palabra.setColumns(20);
-        palabra.setRows(5);
-        jScrollPane1.setViewportView(palabra);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 490, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 400, 180));
 
         autores.setEditable(false);
         autores.setColumns(20);
@@ -108,7 +90,7 @@ public class Show extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 490, 90));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 550));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -130,20 +112,21 @@ public class Show extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Show.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Show2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Show.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Show2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Show.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Show2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Show.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Show2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Show(resumen).setVisible(true);
+                new Show2(resumen).setVisible(true);
             }
         });
     }
@@ -153,14 +136,10 @@ public class Show extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea palabra;
     private javax.swing.JTextArea text;
     private javax.swing.JTextArea titulo;
     // End of variables declaration//GEN-END:variables

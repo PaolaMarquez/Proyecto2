@@ -5,17 +5,29 @@
  */
 package proyecto2;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author paola
  */
 public class Ventana4 extends javax.swing.JFrame {
+    DefaultListModel modelo1 = new DefaultListModel();
+    DefaultListModel modelo2 = new DefaultListModel();
 
     /**
      * Creates new form Ventana3
      */
     public Ventana4() {
         initComponents();
+        Investigaciones.setModel(modelo1);
+        Autores.setModel(modelo2);
+//        modelo2.removeAllElements();
+        List<String> autores = Global.getListAuthor();
+        for (int i = 0; i < autores.getLen(); i++) {
+            modelo2.addElement(autores.buscarNodo(i).getData());
+            }
     }
 
     /**
@@ -36,6 +48,9 @@ public class Ventana4 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Autores = new javax.swing.JList<>();
+        jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -43,32 +58,79 @@ public class Ventana4 extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(Investigaciones);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 200, 180));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 200, 180));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("BÚSQUEDA POR AUTOR");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel2.setText("Autores:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton1.setText("BUSCAR");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel3.setText("Investigaciones:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, -1, -1));
 
         jScrollPane2.setViewportView(Autores);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 180, 180));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 180, 180));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 390));
+        jLabel4.setText("Seleccione una investigación y presione el botón \"INVESTIGACIÓN\" ");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, -1, -1));
+
+        jButton2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jButton2.setText("INVESTIGACIÓN");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, -1, -1));
+
+        jLabel5.setText("para saber sobre ella:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+//        modelo1.removeAllElements();
+        String autor = Autores.getSelectedValue();
+        if (!autor.equals("")){
+            List<Resumen> titulos  = Global.getTable().search(autor, Global.getTable().getAuthors());
+            if(titulos != null){
+                for (int i = 0; i < titulos.getLen(); i++) {
+                    Nodo<Resumen> aux = titulos.buscarNodo(i);
+                    modelo1.addElement(aux.getData().getTitulo());
+                    }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecciona un autor");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (Investigaciones.getSelectedValue() == null){
+            JOptionPane.showMessageDialog(null, "Seleccione una investigación");
+        }else{
+            String clave = Investigaciones.getSelectedValue();
+            Nodo<Resumen> nodo = Global.getTable().searchResumen(clave);
+            Show show = new Show(nodo);
+            show.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,9 +172,12 @@ public class Ventana4 extends javax.swing.JFrame {
     private javax.swing.JList<String> Autores;
     private javax.swing.JList<String> Investigaciones;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

@@ -65,14 +65,14 @@ public class Resumen {
             str += autores[i];
         }
         str += "\n";
-        for(int i = 0; i<palabras_clave.length;i++){
-            str += palabras_clave[i]+": "+Integer.toString(contarPalabra(palabras_clave[i]))+"\n";
-        }
+//        for(int i = 0; i<palabras_clave.length;i++){
+//            str += palabras_clave[i]+": "+Integer.toString(contarPalabra(palabras_clave[i]))+"\n";
+//        }
         return str;
     }
     
-    public int contarPalabra(String palabra){
-        return resumen.split(palabra).length-1;
+    public static int contarPalabra(Nodo <Resumen> resumen, String palabra){
+        return resumen.getData().getResumen().split(palabra).length-1;
     }
     
     public String printData(){

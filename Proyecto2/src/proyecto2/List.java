@@ -10,7 +10,7 @@ package proyecto2;
  * @author paola
  */
 public class List<T> {
-    private Nodo cabeza, end;
+    private Nodo<T> cabeza, end;
     private int len;
     
     public List(){
@@ -18,7 +18,7 @@ public class List<T> {
         this.len = 0;
     }
     
-    public List(Nodo cabeza){
+    public List(Nodo<T> cabeza){
         this.cabeza = cabeza;
         this.len = 1;
     }
@@ -31,11 +31,11 @@ public class List<T> {
         return (getCabeza() == null);
     }
         
-    public Nodo getCabeza(){
+    public Nodo<T> getCabeza(){
         return this.cabeza;
     }
     
-    public void setCabeza(Nodo cabeza){
+    public void setCabeza(Nodo<T> cabeza){
         this.cabeza = cabeza;
     }
     
@@ -60,7 +60,7 @@ public class List<T> {
         len++;
     }
 
-    public Nodo getEnd() {
+    public Nodo<T> getEnd() {
         return end;
     }
 
@@ -74,7 +74,7 @@ public class List<T> {
             setCabeza(nodo);
             setEnd(nodo);
         }else{
-            Nodo pointer = getEnd();
+            Nodo<T> pointer = getEnd();
             pointer.setNext(nodo);
             setEnd(nodo);
         }
@@ -93,15 +93,15 @@ public class List<T> {
                  
             }else{//en el medio
                 
-                Nodo anterior = this.cabeza;
-                Nodo current = anterior.getNext(); //El segundo indice
+                Nodo<T> anterior = this.cabeza;
+                Nodo<T> current = anterior.getNext(); //El segundo indice
                 while((String.valueOf(data).compareToIgnoreCase(String.valueOf(current.getData()))) > 0){
                     //el while se rompe cuando el data es menorx
                     //ese es el momento en el que el dato es mayor que el acutal
                     anterior = current;
                     current = current.getNext();
                 }
-                Nodo nodo = new Nodo(data);
+                Nodo<T> nodo = new Nodo(data);
                 anterior.setNext(nodo);
                 nodo.setNext(current);
                 len++;
@@ -118,7 +118,7 @@ public class List<T> {
         }else if(posicion == (len +1)){
             insertarFinal(elemento);
         }else{
-            Nodo nodo = new Nodo(elemento);
+            Nodo<T> nodo = new Nodo(elemento);
             if(vacia()){
             setCabeza(nodo);
             }else{
@@ -155,7 +155,7 @@ public class List<T> {
         if (vacia()){
             System.out.println("No hay elementos en la lista");
         }else{
-            Nodo pointer = getCabeza();
+            Nodo<T> pointer = getCabeza();
             setCabeza(pointer.getNext());
             pointer.setNext(null);
             len -=1;
@@ -168,22 +168,22 @@ public class List<T> {
         }else if(posicion == len){
             eliminarUltimo();
         }else{
-            Nodo pointer = getCabeza();
+            Nodo<T> pointer = getCabeza();
             int count = 0;
             while(count < (posicion - 1)){
                 pointer = pointer.getNext();
                 count++;
             }
-            Nodo temp = pointer.getNext();
+            Nodo<T> temp = pointer.getNext();
             pointer.setNext(temp.getNext());
             temp.setNext(null); 
             len -=1;
         }
     }
     
-    public Nodo<T> buscarNodo(int index){
+    public Nodo buscarNodo(int index){
         int count = 0;
-        Nodo pointer = getCabeza();
+        Nodo<T> pointer = getCabeza();
         while(count != index){
             pointer = pointer.getNext();
             count++;

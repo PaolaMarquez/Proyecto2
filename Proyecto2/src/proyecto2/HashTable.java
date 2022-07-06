@@ -10,7 +10,6 @@ package proyecto2;
  * @author Abril
  */
 
-import java.util.Set;
 import javax.swing.JOptionPane;
 
 
@@ -21,17 +20,17 @@ public class HashTable {
     int tamaño;
     
     public HashTable(){
-        this.tamaño = 1;
+        this.tamaño =27;
         this.array= new Nodo[tamaño];
         this.authors = new Nodo[tamaño];
         this.words = new Nodo[tamaño];
     }
 
-    public Nodo[] getArray() {
+    public Nodo<Resumen>[] getArray() {
         return array;
     }
 
-    public void setArray(Nodo[] array) {
+    public void setArray(Nodo<Resumen>[] array) {
         this.array = array;
     }
 
@@ -59,13 +58,12 @@ public class HashTable {
         this.words = words;
     }
     
-    
-    
     public boolean insertar(Nodo<Resumen> nodo, String titulo, String[] author, String[] Keywords) {
         int position = hash(titulo);
         boolean exists = false;
-        if(position >= tamaño) {
-            Nodo[] nuevo = new Nodo[position+1];
+        System.out.println(titulo + ": "+ position + "\n");
+        if(position > tamaño) {
+            Nodo<Resumen>[] nuevo = new Nodo[position+1];
             for (int i = 0; i < tamaño; i++) {
                 nuevo[i] = array[i];
             }
@@ -152,6 +150,24 @@ public class HashTable {
     }
     
     
+//    public int hash(String keyword) {
+//        int valor = 0;
+//        int position = 1;
+//        for (int i = 0; i < keyword.length() ; i++) {
+//                if (keyword.codePointAt (i) == 32) {
+//                    valor += 0;
+//                } else if (keyword.codePointAt (i) >= 48 && keyword.codePointAt (i) <= 57) {
+//                        valor += ((keyword.codePointAt (i) - 47) * position);
+//                } else if (keyword.codePointAt (i) >= 65 && keyword.codePointAt (i) <= 90) {
+//                        valor += ((keyword.codePointAt (i) - 54) * position);
+//                } else if (keyword.codePointAt (i) >= 97 && keyword.codePointAt (i) <= 122) {
+//                        valor += ((keyword.codePointAt (i) - 60) * position);
+//                }
+//                position++;
+//            }
+//            return (valor % tamaño);
+//    }
+    
     public int hash(String keyword) {
         int valor = 0;
         int position = 1;
@@ -167,43 +183,49 @@ public class HashTable {
                 }
                 position++;
             }
-            return (valor % tamaño);
-    }
-       public int hashWord(String keyword, int size) {
-        int valor = 0;
-        int position = 1;
-        for (int i = 0; i < keyword.length() ; i++) {
-                if (keyword.codePointAt (i) == 32) {
-                    valor += 0;
-                } else if (keyword.codePointAt (i) >= 48 && keyword.codePointAt (i) <= 57) {
-                        valor += ((keyword.codePointAt (i) - 47) * position);
-                } else if (keyword.codePointAt (i) >= 65 && keyword.codePointAt (i) <= 90) {
-                        valor += ((keyword.codePointAt (i) - 54) * position);
-                } else if (keyword.codePointAt (i) >= 97 && keyword.codePointAt (i) <= 122) {
-                        valor += ((keyword.codePointAt (i) - 60) * position);
-                }
-                position++;
-            }
-            return (valor % size);
+            int prueba = (valor % this.tamaño);
+//            if(prueba == 0){
+//                System.out.println("aa");
+//                prueba = valor / 2;
+//            }    
+            return (prueba);
     }
     
+//        public int hashWord(String keyword, int size) {
+//        int valor = 0;
+//        int position = 1;
+//        for (int i = 0; i < keyword.length() ; i++) {
+//                if (keyword.codePointAt (i) == 32) {
+//                    valor += 0;
+//                } else if (keyword.codePointAt (i) >= 48 && keyword.codePointAt (i) <= 57) {
+//                        valor += ((keyword.codePointAt (i) - 47) * position);
+//                } else if (keyword.codePointAt (i) >= 65 && keyword.codePointAt (i) <= 90) {
+//                        valor += ((keyword.codePointAt (i) - 54) * position);
+//                } else if (keyword.codePointAt (i) >= 97 && keyword.codePointAt (i) <= 122) {
+//                        valor += ((keyword.codePointAt (i) - 60) * position);
+//                }
+//                position++;
+//            }
+//            return (valor % size);
+//    }
+//    
     
-    public List<Resumen> search(String clave, Nodo[] tabla){
-        List list = new List();
+    public List search(String clave, Nodo[] tabla){
+        List<Resumen> list = new List();
         int position = hash(clave);
         if(position < tabla.length){
-            Nodo temp = tabla[position];
+            Nodo<Integer> temp = tabla[position];
             if(temp != null){
                 if (temp.getNext() == null){
                     if(temp.getKey().equals(clave)){
                         int posTitle = (int) temp.getData();
                         Nodo<Resumen> aux = this.array[posTitle];
                         if(aux.getNext() == null){
-                            list.insertOrdered(this.array[posTitle]);
+                            list.insertOrdered(this.array[posTitle].getData());
                         }else{
                             while(aux.getNext() != null){
                             if(temp.getKeyTitle().equals(aux.getData().getTitulo())){
-                                list.insertOrdered(aux);
+                                list.insertOrdered(aux.getData());
                             }
                             aux = aux.getNext();
                             }
@@ -215,11 +237,11 @@ public class HashTable {
                             int posTitle = (int) temp.getData();
                             Nodo<Resumen> aux = this.array[posTitle];
                             if(aux.getNext() == null){
-                                list.insertOrdered(this.array[posTitle]);
+                                list.insertOrdered(this.array[posTitle].getData());
                             }else{
                                 while(aux.getNext() != null){
                                 if(temp.getKeyTitle().equals(aux.getData().getTitulo())){
-                                    list.insertOrdered(aux);
+                                    list.insertOrdered(aux.getData());
                                 }
                                 aux = aux.getNext();
                                 }
@@ -233,7 +255,7 @@ public class HashTable {
         return list;   
     }
     
-    public Nodo<Resumen> searchResume(String clave){
+    public Nodo<Resumen> searchResumen(String clave){
         int position = hash(clave);
         if(position < array.length){
             Nodo<Resumen> temp = this.array[position];

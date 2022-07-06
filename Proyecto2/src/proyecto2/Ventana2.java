@@ -6,19 +6,25 @@
 package proyecto2;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author paola
  */
 public class Ventana2 extends javax.swing.JFrame {
-    DefaultListModel modelo = new DefaultListModel();
+    public static DefaultListModel modelo = new DefaultListModel();
     /**
      * Creates new form Ventana2
      */
     public Ventana2() {
         initComponents();
         lista.setModel(modelo);
+        modelo.removeAllElements();
+        List<String> titulos = Global.getListTitulo();
+        for (int i = 0; i < titulos.getLen(); i++) {
+            modelo.addElement(titulos.buscarNodo(i).getData());
+            }
     }
 
     /**
@@ -33,8 +39,10 @@ public class Ventana2 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -42,42 +50,41 @@ public class Ventana2 extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(lista);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 170, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 330, 180));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, -1, -1));
-
-        jButton2.setText("jButton2");
+        jButton2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jButton2.setText("INVESTIGACIÓN");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        jLabel1.setText("Seleccione una investigación y presione el botón");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, 20));
+
+        jLabel2.setText(" 'INVESTIGACIÓN\" para realizar el análisis.");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel3.setText("INVESTIGACIONES:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        List<String> titulos = Global.getListTitulo();
-        for (int i = 0; i < titulos.getLen(); i++) {
-            modelo.addElement(titulos.buscarNodo(i).getData());
-            }
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String titulo = lista.getSelectedValue();
-//        Nodo<Resumen> resumen = search(titulo);
-//        String info = resumen.printDocument();
+        if (lista.getSelectedValue() == null){
+            JOptionPane.showMessageDialog(null, "Seleccione una investigación");
+        }else{
+            String clave = lista.getSelectedValue();
+            Nodo<Resumen> nodo = Global.getTable().searchResumen(clave);
+            Show2 show2 = new Show2(nodo);
+            show2.setVisible(true);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -116,8 +123,10 @@ public class Ventana2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> lista;
