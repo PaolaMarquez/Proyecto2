@@ -234,27 +234,26 @@ public class HashTable {
         return list;   
     }
     
-    public List<Resumen> searchResume(String clave){
-        List list = new List();
+    public Nodo<Resumen> searchResume(String clave){
         int position = hash(clave);
         if(position < array.length){
             Nodo<Resumen> temp = this.array[position];
             if(temp != null){
                 if (temp.getNext() == null) {
                     if(temp.getData().getTitulo().equals(clave)){
-                        list.insertOrdered(temp);
+                        return temp;
                     }
                 }else{
                     while(temp.getNext() != null){
                         if(clave.equals(temp.getData().getTitulo())){
-                            list.insertOrdered(temp);
+                            return temp;
                         }
                         temp = temp.getNext();
                     }
                 }
             }
         }
-        return list;
+        return null;
     }
 
 }
