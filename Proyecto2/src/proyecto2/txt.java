@@ -22,8 +22,9 @@ public class txt {
         boolean exists = false;
         String titulo = contenido.split("Autores")[0];
         String[] autores = contenido.split("Resumen\n")[0].split("Autores\n")[1].split("\n");
-        String resumen = contenido.split("Resumen\n")[1].split("Palabras claves:")[0];        
-        String[] palabras_claves = contenido.split("Palabras claves:")[1].split(".")[0].split(", ");
+        String resumen = contenido.split("Resumen\n")[1].split("Palabras claves:")[0];
+        String[] palabras_claves = contenido.split("Palabras claves: ")[1].split(".\n")[0].split(", ");
+
         boolean ok = ValidarArchivo(titulo, resumen, autores, palabras_claves);
         if(ok){
             Resumen nodo = new Resumen(titulo, resumen, autores, palabras_claves);
@@ -34,15 +35,17 @@ public class txt {
                 Global.setTable(table);
             }
             exists = table.insertar(nodo2, titulo, contenido);
-            List<String> list = new List();
             if (Global.getListSave() == null){
-                Global.setListSave(list);
+                List<String> list1 = new List();
+                Global.setListSave(list1);
             }
             if (Global.getListTitulo() == null){
-                Global.setListTitulo(list);
+                List<String> list2 = new List();
+                Global.setListTitulo(list2);
             }
             if (!exists){
                 Global.getListTitulo().insertOrdered(titulo);
+                
             }
         }
         else {

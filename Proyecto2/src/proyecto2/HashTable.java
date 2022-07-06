@@ -42,7 +42,7 @@ public class HashTable {
     public boolean insertar(Nodo<Resumen> nodo, String titulo, String contenido) {
         int position = hash(titulo);
         boolean exists = false;
-        if(position > tamaño) {
+        if(position >= tamaño) {
             Nodo[] nuevo = new Nodo[position+1];
             for (int i = 0; i < tamaño; i++) {
                 nuevo[i] = array[i];
@@ -72,7 +72,7 @@ public class HashTable {
                 }
             }
         }
-        array[position] = nodo;
+
         }
         }
         return exists;

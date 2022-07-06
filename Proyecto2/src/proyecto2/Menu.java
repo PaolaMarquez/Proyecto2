@@ -118,30 +118,10 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         String contenido = openFile();
-        List<String> list = new List();
-//        System.out.println(contenido);
-        String titulo = contenido.split("Autores")[0];
-        String[] autores = contenido.split("Resumen\n")[0].split("Autores\n")[1].split("\n");
-        String resumen = contenido.split("Resumen\n")[1].split("Palabras claves:")[0];        
-        String[] palabras_claves = contenido.split("Palabras claves:")[1].split(".")[0].split(", ");
-//        System.out.println(titulo);   
-//        for (int i = 0; i < autores.length; i++) {
-//            System.out.println(autores[i]);
-//        }
-//        System.out.println(resumen);
-//        for (int i = 0; i < autores.length; i++) {
-//            System.out.println(autores[i]);
-//        }
-//        if (Global.getListSave() == null){
-//            Global.setListSave(list);
-//        }
-//        if (Global.getListTitulo() == null){
-//            Global.setListTitulo(list);
-//        }
         if (!contenido.equals("")){
             boolean exists = txt.crear_nodo(contenido);
             if (!exists){
-            Global.getListSave().insertarFinal(contenido);
+                Global.getListSave().insertOrdered(contenido);
             }
         }
         
