@@ -65,8 +65,9 @@ public class txt {
         boolean exists = false;
         String titulo = contenido.split("Autores")[0];
         String[] autores = contenido.split("Resumen\n")[0].split("Autores\n")[1].split("\n");
-        String resumen = contenido.split("Resumen\n")[1].split("Palabras claves:")[0];        
-        String[] palabras_claves = contenido.split("Palabras claves:")[1].split(".")[0].split(", ");
+        String resumen = contenido.split("Resumen\n")[1].split("Palabras claves:")[0];
+        String[] palabras_claves = contenido.split("Palabras claves: ")[1].split(".\n")[0].split(", ");
+
         boolean ok = ValidarArchivo(titulo, resumen, autores, palabras_claves);
         if(ok){
             Resumen nodo = new Resumen(titulo, resumen, autores, palabras_claves);
@@ -76,16 +77,19 @@ public class txt {
                 table = new HashTable();
                 Global.setTable(table);
             }
-            List<String> list = new List();
+
             exists = table.insertar(nodoHash, titulo, autores, palabras_claves);
             if (Global.getListSave() == null){
-                Global.setListSave(list);
+                List<String> list1 = new List();
+                Global.setListSave(list1);
             }
             if (Global.getListTitulo() == null){
-                Global.setListTitulo(list);
+                List<String> list2 = new List();
+                Global.setListTitulo(list2);
             }
             if (Global.getListAuthor() == null){
-                Global.setListAuthor(list);
+                List<String> list3 = new List();
+                Global.setListAuthor(list3);
             }
             
             if (!exists){

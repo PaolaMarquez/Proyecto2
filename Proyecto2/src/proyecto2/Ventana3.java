@@ -90,12 +90,13 @@ public class Ventana3 extends javax.swing.JFrame {
         if(clave.equals("")){
             JOptionPane.showMessageDialog(null, "Error en los datos ingresados");
         }else{
-            List list  = Global.getTable().search(clave);
-            if(list != null){
-                //setear para imprimir en pagina
-                JOptionPane.showMessageDialog(null, "");
-            }
+//            List list  = Global.getTable().search(clave);
+//            if(list != null){
+//                //setear para imprimir en pagina
+//                JOptionPane.showMessageDialog(null, "");
+//            }
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
