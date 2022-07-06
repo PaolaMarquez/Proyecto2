@@ -9,11 +9,14 @@ package proyecto2;
 public class Nodo <T> {
     Nodo next;
     T data;
+    String key;
+    String keyTitle;
     
     public Nodo (T data){
         this.next = null;
         this.data = data;
-        
+        this.key = null;
+        this.keyTitle = null;
     }
 
     public Nodo getNext() {
@@ -31,5 +34,22 @@ public class Nodo <T> {
     public void setData(T data) {
         this.data = data;
     }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getKeyTitle() {
+        return keyTitle;
+    }
+
+    public void setKeyTitle(String keyTitle) {
+        this.keyTitle = keyTitle;
+    }
+    
     
 }

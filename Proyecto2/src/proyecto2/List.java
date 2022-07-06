@@ -192,4 +192,14 @@ public class List<T> {
         return pointer;
         
     }
+    
+    public boolean deleteRepetition(String word){
+        boolean repetido = false;
+        for(int i = 0; i < getLen(); i++){
+            if(word.equals(this.buscarNodo(i).getData())){
+                repetido = true;
+            }
+        }
+        return repetido;
+    }
 }        

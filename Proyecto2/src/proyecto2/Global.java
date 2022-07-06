@@ -39,6 +39,14 @@ public class Global {
     public static void setListSave(List listSave) {
         Global.listSave = listSave;
     }
+
+    public static List getListAuthor() {
+        return listAuthor;
+    }
+
+    public static void setListAuthor(List listAuthor) {
+        Global.listAuthor = listAuthor;
+    }
     
-    
+
 }

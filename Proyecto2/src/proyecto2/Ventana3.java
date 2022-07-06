@@ -5,6 +5,9 @@
  */
 package proyecto2;
 
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author paola
@@ -53,10 +56,20 @@ public class Ventana3 extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
         palabraClave.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        palabraClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                palabraClaveActionPerformed(evt);
+            }
+        });
         jPanel1.add(palabraClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 160, 30));
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton1.setText("BUSCAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -67,6 +80,23 @@ public class Ventana3 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void palabraClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_palabraClaveActionPerformed
+      
+    }//GEN-LAST:event_palabraClaveActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String clave = palabraClave.getText();
+        if(clave.equals("")){
+            JOptionPane.showMessageDialog(null, "Error en los datos ingresados");
+        }else{
+            List list  = Global.getTable().search(clave);
+            if(list != null){
+                //setear para imprimir en pagina
+                JOptionPane.showMessageDialog(null, "");
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

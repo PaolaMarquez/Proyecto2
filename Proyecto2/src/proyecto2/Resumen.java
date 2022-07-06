@@ -74,4 +74,19 @@ public class Resumen {
     public int contarPalabra(String palabra){
         return resumen.split(palabra).length-1;
     }
+    
+    public String printData(){
+        String str = "";
+        str+= "Titulo: " + titulo + ".\n";
+        str+= "Autores:" ;
+        for (int i = 0; i<autores.length;i++){
+            str +="\n" + autores[i];
+        }
+        str+= "Resumen: \n" + resumen + "\n";
+        str += "Palabras Claves:";
+        for (int i = 0; i<palabras_clave.length;i++){
+            str +="\n" + palabras_clave[i];
+        }
+        return str;
+    }
 }

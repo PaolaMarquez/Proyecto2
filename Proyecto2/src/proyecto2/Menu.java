@@ -109,6 +109,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         String contenido = openFile();
+        //Esta repetida la funcion
         txt.crear_nodo(contenido);
         List<String> list = new List();
         if (Global.getListSave() == null){
@@ -116,6 +117,9 @@ public class Menu extends javax.swing.JFrame {
         }
         if (Global.getListTitulo() == null){
             Global.setListTitulo(list);
+        }
+        if(Global.getListAuthor() == null){
+            Global.setListAuthor(list);
         }
         boolean exists = txt.crear_nodo(contenido);
         
