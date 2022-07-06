@@ -121,7 +121,7 @@ public class Menu extends javax.swing.JFrame {
         if (!contenido.equals("")){
             boolean exists = txt.crear_nodo(contenido);
             if (!exists){
-            Global.getListSave().insertarFinal(contenido);
+                Global.getListSave().insertOrdered(contenido);
             }
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed

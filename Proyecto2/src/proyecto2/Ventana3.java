@@ -90,15 +90,16 @@ public class Ventana3 extends javax.swing.JFrame {
         if(clave.equals("")){
             JOptionPane.showMessageDialog(null, "Error en los datos ingresados");
         }else{
-            List list  = Global.getTable().search(clave, Global.getTable().getWords());
+            List<Resumen> list  = Global.getTable().search(clave, Global.getTable().getWords());
             if(list != null){
-                Show s = new Show();
-                s.setVisible(true);
+//                Show s = new Show();
+//                s.setVisible(true);
                 JOptionPane.showMessageDialog(null, "");
             }else{
                JOptionPane.showMessageDialog(null, "No se ha encontrado la palabra ingresada");
             }
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

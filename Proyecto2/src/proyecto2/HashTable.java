@@ -64,9 +64,8 @@ public class HashTable {
     public boolean insertar(Nodo<Resumen> nodo, String titulo, String[] author, String[] Keywords) {
         int position = hash(titulo);
         boolean exists = false;
-        nodo.setKey(titulo);
-        if(position > tamaño) {
-            Nodo<Resumen>[] nuevo = new Nodo[position+1];
+        if(position >= tamaño) {
+            Nodo[] nuevo = new Nodo[position+1];
             for (int i = 0; i < tamaño; i++) {
                 nuevo[i] = array[i];
             }
@@ -96,7 +95,7 @@ public class HashTable {
                 }
             }
         }
-        
+
         if(!exists){
             String[][] group = {author, Keywords};
             int numClave = 0;

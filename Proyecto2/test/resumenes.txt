@@ -21,7 +21,7 @@ entre los que se cuenta Caquot-Kerisel y Meyerhof, aplicado en las fundaciones i
 de las fundaciones directas, implementa el método de Terzaghi y Vesic. Igualmente, se realizó un
 modelo de cálculo para el diseño de todas las fundaciones de la estructura, el cual fue implementado en
 el complemento obtenido en este trabajo de investigación.
-Palabras claves: fundaciones directas, AutoCAD, complemento, C#
+Palabras claves: fundaciones directas, AutoCAD, complemento, C#.
 archivos::
 Arquitectura referencial para mecanismos de
 Internacionalización y localización en PHP.

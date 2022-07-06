@@ -67,10 +67,7 @@ public class Ventana2 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         List<String> titulos = Global.getListTitulo();
-        System.out.println("PRINT");        
-        System.out.println(Global.getListTitulo().getLen());
         for (int i = 0; i < titulos.getLen(); i++) {
-            System.out.println(titulos.buscarNodo(i).getData());
             modelo.addElement(titulos.buscarNodo(i).getData());
             }
         
