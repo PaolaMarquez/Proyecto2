@@ -20,11 +20,8 @@ public class Resumen {
         this.resumen = resumen;
         this.autores = autores;
         this.palabras_clave = palabras_clave;
-        
-        
     }
     
-
     public String getTitulo() {
         return titulo;
     }
@@ -56,37 +53,9 @@ public class Resumen {
     public void setPalabras_clave(String[] palabras_clave) {
         this.palabras_clave = palabras_clave;
     }
-    
-    public String printDocument() {
-        String str = "";
-        str+= titulo + ".\n";
-        str+= "Autores: ";
-        for (int i = 0; i<autores.length;i++){
-            str += autores[i];
-        }
-        str += "\n";
-//        for(int i = 0; i<palabras_clave.length;i++){
-//            str += palabras_clave[i]+": "+Integer.toString(contarPalabra(palabras_clave[i]))+"\n";
-//        }
-        return str;
-    }
-    
+   
     public static int contarPalabra(Nodo <Resumen> resumen, String palabra){
         return resumen.getData().getResumen().split(palabra).length-1;
     }
     
-    public String printData(){
-        String str = "";
-        str+= "Titulo: " + titulo + ".\n";
-        str+= "Autores:" ;
-        for (int i = 0; i<autores.length;i++){
-            str +="\n" + autores[i];
-        }
-        str+= "Resumen: \n" + resumen + "\n";
-        str += "Palabras Claves:";
-        for (int i = 0; i<palabras_clave.length;i++){
-            str +="\n" + palabras_clave[i];
-        }
-        return str;
-    }
 }

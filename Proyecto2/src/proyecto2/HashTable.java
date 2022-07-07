@@ -20,7 +20,7 @@ public class HashTable {
     int tamaño;
     
     public HashTable(){
-        this.tamaño =27;
+        this.tamaño = 27;
         this.array= new Nodo[tamaño];
         this.authors = new Nodo[tamaño];
         this.words = new Nodo[tamaño];
@@ -61,7 +61,6 @@ public class HashTable {
     public boolean insertar(Nodo<Resumen> nodo, String titulo, String[] author, String[] Keywords) {
         int position = hash(titulo);
         boolean exists = false;
-        System.out.println(titulo + ": "+ position + "\n");
         if(position > tamaño) {
             Nodo<Resumen>[] nuevo = new Nodo[position+1];
             for (int i = 0; i < tamaño; i++) {
@@ -148,26 +147,7 @@ public class HashTable {
         }
         return exists;
     }
-    
-    
-//    public int hash(String keyword) {
-//        int valor = 0;
-//        int position = 1;
-//        for (int i = 0; i < keyword.length() ; i++) {
-//                if (keyword.codePointAt (i) == 32) {
-//                    valor += 0;
-//                } else if (keyword.codePointAt (i) >= 48 && keyword.codePointAt (i) <= 57) {
-//                        valor += ((keyword.codePointAt (i) - 47) * position);
-//                } else if (keyword.codePointAt (i) >= 65 && keyword.codePointAt (i) <= 90) {
-//                        valor += ((keyword.codePointAt (i) - 54) * position);
-//                } else if (keyword.codePointAt (i) >= 97 && keyword.codePointAt (i) <= 122) {
-//                        valor += ((keyword.codePointAt (i) - 60) * position);
-//                }
-//                position++;
-//            }
-//            return (valor % tamaño);
-//    }
-    
+        
     public int hash(String keyword) {
         int valor = 0;
         int position = 1;
@@ -184,10 +164,6 @@ public class HashTable {
                 position++;
             }
             int prueba = (valor % this.tamaño);
-//            if(prueba == 0){
-//                System.out.println("aa");
-//                prueba = valor / 2;
-//            }    
             return (prueba);
     }
     

@@ -52,6 +52,7 @@ public class Show2 extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         titulo = new javax.swing.JTextArea();
 
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

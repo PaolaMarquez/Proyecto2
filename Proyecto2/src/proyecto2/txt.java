@@ -13,12 +13,12 @@ public class txt {
         String info = "";
         if(!list.vacia()){
             for (int i = 0; i < list.getLen(); i++){
-                info += "archivos::" + list.buscarNodo(i).getData() + "\n";
+                info += "archivos::\n" + list.buscarNodo(i).getData();
             }
         }
         try{
             PrintWriter pw = new PrintWriter("test\\resumenes.txt");
-            pw.append(info);
+            pw.write(info);
             pw.close();
             JOptionPane.showMessageDialog(null,"Guardador realizado Exitosamente");
         }catch(Exception err){
@@ -30,8 +30,13 @@ public class txt {
         String str = "test\\resumenes.txt";
         String contenido = leer_archivo(str);
         String[] contenido_array = contenido.split("archivos::\n");
+        List<String> list = new List();
+        if (Global.getListSave() == null){
+            Global.setListSave(list);
+        }
         for (int i = 1; i < contenido_array.length; i++) {
             crear_nodo(contenido_array[i]);
+            Global.getListSave().insertarFinal(contenido_array[i]);
         }
         
     }

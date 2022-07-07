@@ -44,6 +44,7 @@ public class Ventana3 extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,12 +107,12 @@ public class Ventana3 extends javax.swing.JFrame {
     }//GEN-LAST:event_palabraClaveActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        modelo.removeAllElements();
+        modelo.removeAllElements();
         String clave = palabraClave.getText();
-        int p = Global.getTable().hash("REST");
-        System.out.println(Global.getTable().getWords()[p].getData());
-        System.out.println(p);
-        System.out.println(Global.getTable().getArray()[11].getData().getTitulo());
+//        int p = Global.getTable().hash("REST");
+//        System.out.println(Global.getTable().getWords()[p].getData());
+//        System.out.println(p);
+//        System.out.println(Global.getTable().getArray()[11].getData().getTitulo());
         if(clave.equals("")){
             JOptionPane.showMessageDialog(null, "Error en los datos ingresados");
         }else{

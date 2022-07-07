@@ -23,7 +23,7 @@ public class Ventana4 extends javax.swing.JFrame {
         initComponents();
         Investigaciones.setModel(modelo1);
         Autores.setModel(modelo2);
-//        modelo2.removeAllElements();
+        modelo2.removeAllElements();
         List<String> autores = Global.getListAuthor();
         for (int i = 0; i < autores.getLen(); i++) {
             modelo2.addElement(autores.buscarNodo(i).getData());
@@ -52,6 +52,7 @@ public class Ventana4 extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,7 +107,7 @@ public class Ventana4 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        modelo1.removeAllElements();
+        modelo1.removeAllElements();
         String autor = Autores.getSelectedValue();
         if (!autor.equals("")){
             List<Resumen> titulos  = Global.getTable().search(autor, Global.getTable().getAuthors());
